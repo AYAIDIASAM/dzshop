@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 function Dashboard() {
     return (
         
@@ -25,19 +26,11 @@ function Dashboard() {
 
         {/* BOUTONS */}
         <div className="d-flex flex-wrap gap-3 mb-5">
-          <a
-            href="#produits"
-            className="btn btn-primary btn-lg px-4 py-3 rounded-pill fw-semibold"
-          >
-            🛍️ Nos produits
-          </a>
+          
 
-          <a
-            href="#categories"
-            className="btn btn-outline-dark btn-lg px-4 py-3 rounded-pill"
-          >
-            Voir les catégories
-          </a>
+          <Link to="/produits" className="btn btn-primary btn-lg px-4 py-3 rounded-pill fw-semibold">
+  🛍️ Nos produits
+</Link>
         </div>
 
         {/* AVANTAGES */}

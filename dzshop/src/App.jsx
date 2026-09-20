@@ -1,25 +1,27 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
-import ColorSchemesExample from './navbar.jsx'
-import Dashboard from './dashboard.jsx'
-import Footer from './footer.jsx'
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { CartProvider } from './CartContext';
+import Navbar from './navbar';
+import Dashboard from './dashboard';
+import ProductsPage from './ProductsPage';
+import ProductDetailPage from './ProductDetailPage';
+import CartPage from './CartPage';
+import Footer from './footer';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <ColorSchemesExample />
-      <Dashboard />
-      <Footer />
-      
-     
-    </>
-  )
+    <CartProvider>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path='/' element={<Dashboard />} />
+          <Route path='/produits' element={<ProductsPage />} />
+          <Route path='/produit/:id' element={<ProductDetailPage />} />
+          <Route path='/panier' element={<CartPage />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </CartProvider>
+  );
 }
 
-export default App
+export default App;
