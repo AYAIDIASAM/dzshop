@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 function Footer() {
     return (
         <footer className="bg-dark text-white text-center py-4 mt-5">
@@ -5,21 +6,15 @@ function Footer() {
                 <h5>Mon Site</h5>
 
                 <p className="mb-2">
-                    © 2026 Mon Site. Tous droits réservés.
+                    © 2026 dzshop. Tous droits réservés.
                 </p>
 
                 <div>
-                    <a href="#" className="text-white mx-2 text-decoration-none">
-                        Accueil
-                    </a>
+                   <Link to="/">Accueil</Link>
 
-                    <a href="#" className="text-white mx-2 text-decoration-none">
-                        À propos
-                    </a>
+                    <Link to="/produits">Produits</Link>
 
-                    <a href="#" className="text-white mx-2 text-decoration-none">
-                        Contact
-                    </a>
+                
                 </div>
             </div>
         </footer>

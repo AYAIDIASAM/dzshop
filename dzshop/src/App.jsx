@@ -6,6 +6,9 @@ import ProductsPage from './ProductsPage';
 import ProductDetailPage from './ProductDetailPage';
 import CartPage from './CartPage';
 import Footer from './footer';
+import NotFoundPage from './NotFoundPage';
+
+
 
 function App() {
   return (
@@ -17,6 +20,7 @@ function App() {
           <Route path='/produits' element={<ProductsPage />} />
           <Route path='/produit/:id' element={<ProductDetailPage />} />
           <Route path='/panier' element={<CartPage />} />
+           <Route path='*' element={<NotFoundPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>
