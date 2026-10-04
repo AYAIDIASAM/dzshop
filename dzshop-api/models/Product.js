@@ -1,17 +1,34 @@
+import express from 'express'
 import mongoose from 'mongoose'
+import Product from '../models/Product.js'
 
-const productSchema = new mongoose.Schema(
-  {
-    nom: { type: String, required: [true, 'Le nom est obligatoire'], trim: true, minlength: 2 },
-    description: { type: String, default: '', trim: true },
-    prix: { type: Number, required: [true, 'Le prix est obligatoire'], min: [0, 'Le prix ne peut pas être négatif'] },
-    categorie: { type: String, default: 'Divers', trim: true },
-    stock: { type: Number, default: 0, min: 0 },
-    image: { type: String, default: '' },
-  },
-  { timestamps: true }
-)
+const router = express.Router()
 
-const Product = mongoose.model('Product', productSchema)
+// LIRE tous les produits  →  GET /api/products
+router.get('/', async function (req, res) {
+  try {
+    const produits = await Product.find().sort({ createdAt: 1 })
+    res.json(produits)
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+})
 
-export default Product
+// LIRE un seul produit  →  GET /api/products/:id
+router.get('/:id', async function (req, res) {
+  try {
+    if (!mongoose.isValidObjectId(req.params.id)) {
+      return res.status(404).json({ message: 'Produit introuvable' })
+    }
+
+    const produit = await Product.findById(req.params.id)
+    if (!produit) {
+      return res.status(404).json({ message: 'Produit introuvable' })
+    }
+    res.json(produit)
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+})
+
+export default router
